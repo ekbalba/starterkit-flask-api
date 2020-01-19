@@ -6,8 +6,6 @@ test:
   database: ":memory:"
   timeout: 500
 # command to install dependencies
-env:
-  - REQ_FILE="project_name/.env"
 install:
   - 'pip install -r project_name/requirements.txt'
 before_script:
