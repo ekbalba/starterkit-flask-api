@@ -20,6 +20,3 @@ def app():
         return app
 
     yield _app
-    db.session.remove()
-    if str(db.engine.url) == TestingConfig.SQLALCHEMY_DATABASE_URI:
-        db.drop_all()

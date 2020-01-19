@@ -12,4 +12,4 @@ before_script:
   - cd project_name
 # to start the test
 script:
-  - python -m pytest
+  - pytest
