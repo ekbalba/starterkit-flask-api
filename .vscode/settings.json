@@ -1,0 +1,11 @@
+{
+    "python.testing.pytestArgs": [
+        "."
+    ],
+    "python.testing.unittestEnabled": false,
+    "python.testing.nosetestsEnabled": false,
+    "python.testing.pytestEnabled": true,
+    "python.envFile": "${workspaceFolder}/.env",
+    "python.venvPath": "C:\\apps\\starter-kits\\flask-api\\venv",
+    "python.pythonPath": "C:\\apps\\starter-kits\\flask-api\\venv\\Scripts\\python.exe"
+}

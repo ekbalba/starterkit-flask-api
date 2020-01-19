@@ -1,0 +1,13 @@
+language: python
+python:
+  - "3.8"
+test:
+  adapter: sqlite3
+  database: ":memory:"
+  timeout: 500
+# command to install dependencies
+install:
+  - 'pip install -r requirements.txt'
+# to start the test
+script:
+  - python -m pytest
