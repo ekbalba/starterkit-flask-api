@@ -1,7 +1,7 @@
 import pytest
 import os
 
-from config import (
+from project_name.config import (
     get_env_db_url,
     TestingConfig,
     DevelopmentConfig,

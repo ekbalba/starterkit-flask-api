@@ -1,7 +1,7 @@
 import pytest
-from config import TestingConfig
-from extensions.guard import guard
-from models.UserModel import UserModel
+from project_name.config import TestingConfig
+from project_name.extensions.guard import guard
+from project_name.models.UserModel import UserModel
 from tests.support.conftest import app
 
 

@@ -1,6 +1,6 @@
-from extensions.ma import ma
+from project_name.extensions.ma import ma
 from marshmallow import fields, validate
-from models.UserModel import UserModel
+from project_name.models.UserModel import UserModel
 
 validate_email = [validate.Email()]
 validate_password = [

@@ -1,9 +1,9 @@
-from extensions.guard import guard
+from project_name.extensions.guard import guard
 from flask import request, jsonify, make_response
 from flask_restful import Resource
-from libs.strings import gettext
-from models.UserModel import UserModel
-from schemas.UserSchema import UserSchema
+from project_name.libs.strings import gettext
+from project_name.models.UserModel import UserModel
+from project_name.schemas.UserSchema import UserSchema
 
 user_schema = UserSchema()
 

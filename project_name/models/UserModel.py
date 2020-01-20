@@ -1,6 +1,6 @@
 from datetime import datetime
 
-from extensions.db import db
+from project_name.extensions.db import db
 from flask import request
 
 

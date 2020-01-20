@@ -1,10 +1,10 @@
 import json
 import pytest
-from app import create_app
-from config import TestingConfig
-from models.UserModel import UserModel
-from extensions.db import db
-from extensions.guard import guard
+from project_name import create_app
+from project_name.config import TestingConfig
+from project_name.models.UserModel import UserModel
+from project_name.extensions.db import db
+from project_name.extensions.guard import guard
 
 
 @pytest.fixture(scope="module")
@@ -23,7 +23,7 @@ def testing_client():
     def init_db():
         # always start with an empty DB
         db.drop_all()
-        from models.UserModel import UserModel
+        from project_name.models.UserModel import UserModel
 
         db.create_all()
         insert_test_user()

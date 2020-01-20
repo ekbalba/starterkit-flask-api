@@ -1,12 +1,12 @@
-from config import DevelopmentConfig
-from extensions.db import db
-from extensions.guard import guard
-from extensions.ma import ma
+from project_name.config import DevelopmentConfig
+from project_name.extensions.db import db
+from project_name.extensions.guard import guard
+from project_name.extensions.ma import ma
 from flask import Flask, jsonify
 from flask_restful import Api
 from marshmallow import ValidationError
-from models.UserModel import UserModel
-from resources.UserResource import UserLogin, UserRegister, TestIndex
+from project_name.models.UserModel import UserModel
+from project_name.resources.UserResource import UserLogin, UserRegister, TestIndex
 
 
 def create_app(config_filename=DevelopmentConfig):

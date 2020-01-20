@@ -1,7 +1,7 @@
 import pytest
-from app import create_app
-from config import TestingConfig, get_env_db_url
-from extensions.db import db
+from project_name import create_app
+from project_name.config import TestingConfig, get_env_db_url
+from project_name.extensions.db import db
 
 
 @pytest.fixture(scope="module")
@@ -13,7 +13,7 @@ def app():
         if config_class is TestingConfig:
             # always starting with an empty DB
             db.drop_all()
-            from models.UserModel import UserModel
+            from project_name.models.UserModel import UserModel
 
             db.create_all()
 
