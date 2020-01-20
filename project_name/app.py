@@ -6,7 +6,7 @@ from flask import Flask, jsonify
 from flask_restful import Api
 from marshmallow import ValidationError
 from models.UserModel import UserModel
-from resources.UserResource import UserLogin, UserRegister, TestUser
+from resources.UserResource import UserLogin, UserRegister, TestIndex
 
 
 def create_app(config_filename=DevelopmentConfig):
@@ -25,7 +25,7 @@ def create_app(config_filename=DevelopmentConfig):
 
     api.add_resource(UserRegister, "/v1/user")
     api.add_resource(UserLogin, "/v1/login")
-    api.add_resource(TestUser, "/")
+    api.add_resource(TestIndex, "/")
 
     with app.app_context():
         guard.init_app(app, UserModel)

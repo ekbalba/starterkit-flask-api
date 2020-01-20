@@ -24,9 +24,7 @@ class UserRegister(Resource):
         )
         try:
             new_user.save_to_db()
-            response = jsonify({"message": gettext("user_registered")})
-            response.status_code = 201
-            return response
+            return {"message": gettext("user_registered")}, 201
         except:
             return {"message": gettext("user_invalid_credentials")}, 400
 
@@ -38,17 +36,15 @@ class UserLogin(Resource):
         user_data = user_schema.load(
             user_json_data, partial=("first_name", "last_name")
         )
+        try:
+            user_authenticated = guard.authenticate(user_data.email, user_data.password)
+            jwt_token = guard.encode_jwt_token(user_authenticated)
+            return {"message": gettext("user_login_successful")}, 200 , {"Authorization": jwt_token}
+        except:
+            return {"message": gettext("user_invalid_credentials")}, 400
 
-        user_authenticated = guard.authenticate(user_data.email, user_data.password)
-        response = jsonify({"message": gettext("user_login_successful")})
-        response.headers["Authorization"] = guard.encode_jwt_token(user_authenticated)
-        response.status_code = 200
-        return response
 
-
-class TestUser(Resource):
+class TestIndex(Resource):
     @classmethod
     def get(cls):
-        a = jsonify("test")
-        a.status_code
-        return a
+        return {"message": gettext("test_index")}, 200
