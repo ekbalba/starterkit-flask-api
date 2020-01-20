@@ -8,8 +8,6 @@ test:
 # command to install dependencies
 install:
   - 'pip install -r project_name/requirements.txt'
-before_script:
-  - cd project_name
 # to start the test
 script:
   - pytest
