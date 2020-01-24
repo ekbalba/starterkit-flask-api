@@ -1,10 +1,8 @@
 {
     "test_index": "This is a test for index!",
     "user_username_exists": "A user with that username already exists.",
-    "user_not_found": "User not found.",
-    "user_deleted": "User deleted.",
-    "user_invalid_credentials": "Invalid credentials!",
-    "user_registered": "Account created successful.",
-    "user_password_updated": "User password updated successful.",
-    "user_login_successful": "Login successful."
+    "user_register_success": "User registration successful.",
+    "user_register_fail": "User registration failed.",
+    "user_login_success": "Login successful.",
+    "user_login_fail": "Login failed."
 }
