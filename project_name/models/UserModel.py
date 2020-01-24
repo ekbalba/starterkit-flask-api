@@ -1,7 +1,6 @@
 from datetime import datetime
 
 from project_name.extensions.db import db
-from flask import request
 
 
 class UserModel(db.Model):
@@ -12,7 +11,7 @@ class UserModel(db.Model):
     first_name = db.Column(db.String(50), nullable=False)
     last_name = db.Column(db.String(50), nullable=False)
     is_active = db.Column(db.Boolean(), default=True)
-    date_joined = db.Column(db.DateTime(), nullable=False, default=datetime.utcnow)
+    date_joined = db.Column(db.DateTime(), default=datetime.utcnow)
 
     def save_to_db(self):
         db.session.add(self)

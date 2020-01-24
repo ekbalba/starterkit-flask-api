@@ -1,6 +1,7 @@
-from project_name.extensions.guard import guard
-from flask import request, jsonify, make_response
+from flask import request
 from flask_restful import Resource
+
+from project_name.extensions.guard import guard
 from project_name.libs.strings import gettext
 from project_name.models.UserModel import UserModel
 from project_name.schemas.UserSchema import UserSchema
@@ -11,11 +12,10 @@ user_schema = UserSchema()
 class UserRegister(Resource):
     @classmethod
     def post(cls):
-        user_json_data = request.get_json()
-        user_data = user_schema.load(user_json_data)
+        user_json = request.get_json()
+        user_data = user_schema.load(user_json)
         if UserModel.lookup(user_data.email):
-            return {"message": gettext("user_username_exists")}, 400
-
+            return {"message": gettext("username_exists")}, 400
         new_user = UserModel(
             email=user_data.email,
             password=guard.hash_password(user_data.password),
@@ -24,24 +24,29 @@ class UserRegister(Resource):
         )
         try:
             new_user.save_to_db()
-            return {"message": gettext("user_registered")}, 201
-        except:
-            return {"message": gettext("user_invalid_credentials")}, 400
+            data = {"message": gettext("register_success")}
+            return data, 201
+        except Exception as inst:
+            data = {"message": gettext("register_fail"), "reason": str(inst)}
+            return data, 401
 
 
 class UserLogin(Resource):
     @classmethod
     def post(cls):
-        user_json_data = request.get_json()
-        user_data = user_schema.load(
-            user_json_data, partial=("first_name", "last_name")
-        )
+        user_json = request.get_json()
+        not_include = ("first_name", "last_name")
+        user_data = user_schema.load(user_json, partial=not_include)
+        email = user_data.email
+        password = user_data.password
         try:
-            user_authenticated = guard.authenticate(user_data.email, user_data.password)
+            user_authenticated = guard.authenticate(email, password)
             jwt_token = guard.encode_jwt_token(user_authenticated)
-            return {"message": gettext("user_login_successful")}, 200 , {"Authorization": jwt_token}
-        except:
-            return {"message": gettext("user_invalid_credentials")}, 400
+            data = {"message": gettext("login_success"), "access_token": jwt_token}
+            return data, 200
+        except Exception as inst:
+            data = {"message": gettext("login_fail"), "reason": str(inst)}
+            return data, 401
 
 
 class TestIndex(Resource):
