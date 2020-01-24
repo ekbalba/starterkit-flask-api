@@ -1,4 +1,5 @@
 import pytest
+
 from project_name.config import TestingConfig
 from project_name.extensions.guard import guard
 from project_name.models.UserModel import UserModel

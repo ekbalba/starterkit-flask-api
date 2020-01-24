@@ -1,17 +1,18 @@
-import json
 import pytest
+
 from project_name import create_app
 from project_name.config import TestingConfig
-from project_name.models.UserModel import UserModel
 from project_name.extensions.db import db
 from project_name.extensions.guard import guard
+from project_name.models.UserModel import UserModel
 
 
 @pytest.fixture(scope="module")
 def testing_client():
     app = create_app(TestingConfig)
 
-    # Flask provides a way to test your application by exposing the Werkzeug test Client
+    # Flask provides a way to test your application
+    # by exposing the Werkzeug test Client
     # and handling the context locals for you.
     testing_client = app.test_client()
 
@@ -23,8 +24,6 @@ def testing_client():
     def init_db():
         # always start with an empty DB
         db.drop_all()
-        from project_name.models.UserModel import UserModel
-
         db.create_all()
         insert_test_user()
 
