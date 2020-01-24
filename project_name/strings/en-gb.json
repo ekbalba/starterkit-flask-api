@@ -1,5 +1,4 @@
 {
-    "test_index": "This is a test for index!",
     "username_exists": "A user with that username already exists.",
     "register_success": "User registration successful.",
     "register_fail": "User registration failed.",

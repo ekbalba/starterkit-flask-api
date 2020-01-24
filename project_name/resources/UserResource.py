@@ -47,9 +47,3 @@ class UserLogin(Resource):
         except Exception as inst:
             data = {"message": gettext("login_fail"), "reason": str(inst)}
             return data, 401
-
-
-class TestIndex(Resource):
-    @classmethod
-    def get(cls):
-        return {"message": gettext("test_index")}, 200
